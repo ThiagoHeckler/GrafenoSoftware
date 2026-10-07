@@ -1,0 +1,37 @@
+# Grafeno Software
+
+> A Grafeno Software projeta e desenvolve sites, aplicativos e sistemas sob medida para empresas de todos os tamanhos no Brasil. Os projetos são pensados para ser inteligentes no que automatizam, robustos no que entregam e simples para quem usa.
+
+A empresa é tocada por Thiago Heckler, desenvolvedor de software. O atendimento é direto com quem constrói, do primeiro contato ao suporte depois do lançamento. O nome vem do grafeno, uma camada de carbono com a espessura de um átomo: fina, leve, muito resistente e boa condutora. São as qualidades que a Grafeno busca no software que entrega.
+
+## O que a Grafeno faz
+
+- [Sites](https://grafenosoftware.com.br/solucoes#sites): sites institucionais, landing pages e lojas virtuais com Pix e cartão, rápidos no celular, fáceis de achar no Google e com painel para o cliente editar o conteúdo. Inclui configuração de domínio, hospedagem e e-mail.
+- [Aplicativos](https://grafenosoftware.com.br/solucoes#aplicativos): apps para Android e iPhone com a marca do cliente, como agendamento, pedidos, área do cliente e fidelidade, com login, notificações, pagamentos e publicação nas lojas.
+- [Sistemas de gestão](https://grafenosoftware.com.br/solucoes#sistemas): sistemas web sob medida para vendas, estoque, financeiro, agenda e equipe, com relatórios, permissões por usuário e importação das planilhas atuais. Funcionam no navegador, sem instalar nada.
+- [Integrações e automações](https://grafenosoftware.com.br/solucoes#integracoes): emissão de NF-e e NFC-e, pagamentos e conciliação, mensagens automáticas por WhatsApp e e-mail, e conexão com ERPs e APIs.
+
+## Como funciona um projeto
+
+1. Conversa: entender o negócio, o público e o que precisa melhorar.
+2. Proposta: escopo, prazo e investimento por escrito.
+3. Design: o cliente vê e aprova as telas antes do código.
+4. Desenvolvimento: entregas curtas, com acesso para testar desde cedo.
+5. Lançamento e suporte: o projeto vai ao ar e a Grafeno segue acompanhando.
+
+## Contato
+
+- [Pedir orçamento](https://grafenosoftware.com.br/orcamento): formulário rápido em duas etapas; a primeira conversa é sem compromisso.
+- [WhatsApp](https://wa.me/5549991382347)
+
+## Páginas
+
+- [Início](https://grafenosoftware.com.br/): visão geral, exemplos de projetos (padaria, clínica e academia), por que escolher a Grafeno e quem faz.
+- [Soluções](https://grafenosoftware.com.br/solucoes): detalhes de cada serviço e o que entra em cada um.
+- [Pedir orçamento](https://grafenosoftware.com.br/orcamento)
+
+## Optional
+
+- [Portfólio de Thiago Heckler](https://thiagoheckler.com.br): projetos e estudos do desenvolvedor por trás da Grafeno.
+- [Privacidade](https://grafenosoftware.com.br/privacidade)
+- [Termos de uso](https://grafenosoftware.com.br/termos)

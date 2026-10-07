@@ -875,6 +875,19 @@ img.author-mark { height: auto; object-fit: cover; }
   box-shadow: 0 0 0 4px var(--ligacao-fundo);
 }
 .field [aria-invalid="true"] { border-color: var(--alerta); }
+.field-hint { font-size: 0.875rem; color: var(--texto-suave); }
+.field-hint strong { color: var(--texto); font-weight: 700; }
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ligacao);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.link-button:hover { color: var(--ligacao-hover); }
 .field-error { font-size: 0.875rem; font-weight: 600; color: var(--alerta); }
 
 .need-fieldset { margin: 0 0 18px; padding: 0; border: 0; }

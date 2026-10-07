@@ -28,12 +28,17 @@ export type BudgetErrors = Record<string, string>;
 
 export const LIMITS = { short: 120, details: 3000 };
 
+export function emailFormatError(email: string): string | undefined {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ? undefined : "Confira o e-mail: falta o @ ou o domínio.";
+}
+
 /* A ordem das chaves é a ordem dos campos na tela: o primeiro erro recebe o foco. */
 export function stepOneErrors(form: BudgetRequest): BudgetErrors {
   const next: BudgetErrors = {};
   if (!form.name.trim()) next.name = "Conte seu nome para a gente.";
   if (!form.company.trim()) next.company = "Informe o nome da empresa.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) next.email = "Confira o e-mail: falta o @ ou o domínio.";
+  const emailError = emailFormatError(form.email);
+  if (emailError) next.email = emailError;
   if (form.phone.replace(/\D/g, "").length < 10) next.phone = "Informe o WhatsApp com DDD, por exemplo (49) 99999-9999.";
   return next;
 }

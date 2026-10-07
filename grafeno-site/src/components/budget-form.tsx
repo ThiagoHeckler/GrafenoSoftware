@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { cloneElement, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
-import { sendBudget } from "@/app/orcamento/actions";
+import { cloneElement, FormEvent, ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import { checkEmail, sendBudget } from "@/app/orcamento/actions";
+import { suggestEmail } from "@/lib/email";
 import {
   budgets,
   companySizes,
@@ -20,7 +21,7 @@ import { Icon } from "./icon";
 import { WHATSAPP_URL } from "./whatsapp-float";
 
 type FormKey = keyof BudgetRequest;
-type SendState = "idle" | "sending" | "sent";
+type SendState = "idle" | "checking" | "sending" | "sent";
 
 const fieldIdFor = (key: string) => (key === "need" ? "need-0" : key);
 
@@ -34,6 +35,10 @@ export function BudgetForm() {
   const [announcement, setAnnouncement] = useState("");
   const [form, setForm] = useState(emptyBudget);
   const honeypotRef = useRef<HTMLInputElement>(null);
+  const [emailTouched, setEmailTouched] = useState(false);
+  // E-mail que a pessoa confirmou mesmo com sugestão de correção (ex.: domínio próprio parecido com gmail).
+  const [keptEmail, setKeptEmail] = useState("");
+  const emailSuggestion = emailTouched ? suggestEmail(form.email) : null;
   const cardRef = useRef<HTMLDivElement>(null);
   const pushedStepTwo = useRef(false);
 
@@ -84,13 +89,33 @@ export function BudgetForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (sendState === "sending") return;
+    if (sendState === "sending" || sendState === "checking") return;
     const next = step === 1 ? stepOneErrors(form) : stepTwoErrors(form);
     if (Object.keys(next).length) {
       showErrors(next);
       return;
     }
     if (step === 1) {
+      const suggestion = suggestEmail(form.email);
+      if (suggestion && keptEmail !== form.email) {
+        setEmailTouched(true);
+        setKeptEmail(form.email);
+        showErrors({ email: `Confira o e-mail: parece haver um erro de digitação. Se estiver certo, clique em continuar de novo.` });
+        return;
+      }
+      setSendState("checking");
+      setAnnouncement("Conferindo seu e-mail…");
+      try {
+        const { error } = await checkEmail(form.email);
+        if (error) {
+          setSendState("idle");
+          showErrors({ email: error });
+          return;
+        }
+      } catch {
+        // Sem conexão com o servidor: segue; o envio confere de novo.
+      }
+      setSendState("idle");
       goTo(2);
       return;
     }
@@ -106,14 +131,15 @@ export function BudgetForm() {
       }
       setSendState("idle");
       if (result.errors && Object.keys(result.errors).length) {
+        if (result.errors.email) goTo(1);
         showErrors(result.errors);
         return;
       }
-      setSendError(result.message ?? "Não conseguimos enviar agora.");
+      setSendError(result.message ?? "Não conseguimos enviar agora. Tente de novo em instantes.");
       setAnnouncement("O pedido não foi enviado.");
     } catch {
       setSendState("idle");
-      setSendError("Não conseguimos enviar agora. Confira sua conexão.");
+      setSendError("Não conseguimos enviar agora. Confira sua conexão e tente de novo.");
       setAnnouncement("O pedido não foi enviado.");
     }
   }
@@ -163,15 +189,32 @@ export function BudgetForm() {
               <Field label="Empresa" error={errors.company} required>
                 <input id="company" name="company" autoComplete="organization" value={form.company} onChange={(event) => update("company", event.target.value)} placeholder="Padaria da Ana" />
               </Field>
-              <Field label="E-mail" error={errors.email} required>
-                <input id="email" name="email" type="email" inputMode="email" autoComplete="email" spellCheck={false} value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="ana@empresa.com.br" />
+              <Field
+                label="E-mail"
+                error={errors.email}
+                required
+                hint={
+                  emailSuggestion && (
+                    <span className="field-hint">
+                      Você quis dizer <strong>{emailSuggestion}</strong>?{" "}
+                      <button type="button" className="link-button" onClick={() => update("email", emailSuggestion)}>
+                        Corrigir
+                      </button>
+                    </span>
+                  )
+                }
+              >
+                <input id="email" name="email" type="email" inputMode="email" autoComplete="email" spellCheck={false} value={form.email} onChange={(event) => update("email", event.target.value)} onBlur={() => setEmailTouched(true)} placeholder="ana@empresa.com.br" />
               </Field>
               <Field label="WhatsApp com DDD" error={errors.phone} required>
                 <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => update("phone", event.target.value)} placeholder="(49) 99999-9999" />
               </Field>
             </div>
             <div className="form-actions">
-              <button className="btn btn-primary" type="submit">Continuar para o projeto</button>
+              <button className="btn btn-primary" type="submit" disabled={sendState === "checking"}>
+                {sendState === "checking" && <span className="spinner" aria-hidden="true" />}
+                {sendState === "checking" ? "Conferindo…" : "Continuar para o projeto"}
+              </button>
             </div>
           </div>
         ) : (
@@ -233,7 +276,7 @@ export function BudgetForm() {
             </div>
             {sendError && (
               <p className="form-alert" role="alert">
-                {sendError} Tente de novo em instantes ou{" "}
+                {sendError} Se preferir,{" "}
                 <a className="text-link" href={WHATSAPP_URL} target="_blank" rel="noreferrer">fale com a gente pelo WhatsApp</a>.
               </p>
             )}
@@ -258,11 +301,13 @@ function Field({
   label,
   error,
   required,
+  hint,
   children,
 }: {
   label: string;
   error?: string;
   required?: boolean;
+  hint?: ReactNode;
   children: ReactElement<{ id: string }>;
 }) {
   const inputId = children.props.id;
@@ -281,6 +326,7 @@ function Field({
       </label>
       {control}
       {error && <span className="field-error" id={errorId}>{error}</span>}
+      {hint}
     </div>
   );
 }

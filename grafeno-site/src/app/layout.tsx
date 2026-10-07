@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -18,7 +19,7 @@ const unbounded = Unbounded({
 
 export const metadata: Metadata = {
   /* Domínio público, usado para montar a URL absoluta da imagem de compartilhamento. */
-  metadataBase: new URL("https://grafenosoftware.com.br"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Grafeno Software — sites, aplicativos e sistemas sob medida",
     template: "%s | Grafeno Software",

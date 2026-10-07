@@ -2,6 +2,7 @@
 
 import nodemailer from "nodemailer";
 import {
+  emailFormatError,
   emptyBudget,
   LIMITS,
   stepOneErrors,
@@ -9,10 +10,32 @@ import {
   type BudgetErrors,
   type BudgetRequest,
 } from "@/lib/budget";
+import { emailProblem } from "@/lib/email-dns";
+import { clientIp, hit } from "@/lib/rate-limit";
+
+const HOUR = 60 * 60 * 1000;
+/* Ninguém manda vários pedidos de orçamento de verdade em sequência. */
+const LIMIT_PER_IP = { limit: 3, windowMs: HOUR };
+/* Teto do site inteiro: protege a caixa de e-mail mesmo com ataque de vários IPs. */
+const LIMIT_GLOBAL = { limit: 30, windowMs: HOUR };
+/* Conferência de e-mail (consulta DNS) no botão "Continuar". */
+const LIMIT_EMAIL_CHECK = { limit: 20, windowMs: 10 * 60 * 1000 };
+
+const minutes = (value: number) => (value === 1 ? "1 minuto" : `${value} minutos`);
 
 export type SendBudgetResult =
   | { ok: true }
   | { ok: false; errors?: BudgetErrors; message?: string };
+
+/** Confere o e-mail na primeira etapa, para a pessoa corrigir antes de seguir. */
+export async function checkEmail(email: string): Promise<{ error: string | null }> {
+  const value = String(email ?? "").trim().slice(0, LIMITS.short);
+  const formatError = emailFormatError(value);
+  if (formatError) return { error: formatError };
+  // Acima do limite, não consulta o DNS e deixa seguir: o envio confere de novo.
+  if (hit(`check:${await clientIp()}`, LIMIT_EMAIL_CHECK) !== null) return { error: null };
+  return { error: await emailProblem(value) };
+}
 
 /*
  * Envia o pedido de orçamento por e-mail pelo SMTP da Hostinger.
@@ -30,12 +53,28 @@ export async function sendBudget(input: BudgetRequest & { website?: string }): P
   ) as BudgetRequest;
 
   const errors = { ...stepOneErrors(form), ...stepTwoErrors(form) };
+  if (!errors.email) {
+    const problem = await emailProblem(form.email);
+    if (problem) errors.email = problem;
+  }
   if (Object.keys(errors).length) return { ok: false, errors };
+
+  const ip = await clientIp();
+  const waitIp = hit(`send:${ip}`, LIMIT_PER_IP);
+  if (waitIp !== null) {
+    console.warn(`[orcamento] Limite por IP atingido: ${ip}`);
+    return { ok: false, message: `Você já enviou vários pedidos agora há pouco. Tente de novo em ${minutes(waitIp)}.` };
+  }
+  const waitAll = hit("send:global", LIMIT_GLOBAL);
+  if (waitAll !== null) {
+    console.warn("[orcamento] Limite geral de envios atingido.");
+    return { ok: false, message: `Recebemos muitos pedidos agora. Tente de novo em ${minutes(waitAll)}.` };
+  }
 
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, MAIL_TO } = process.env;
   if (!SMTP_USER || !SMTP_PASS) {
     console.error("[orcamento] SMTP_USER/SMTP_PASS não configurados.");
-    return { ok: false, message: "O envio está indisponível no momento." };
+    return { ok: false, message: "O envio está indisponível no momento. Tente de novo mais tarde." };
   }
 
   const port = Number(SMTP_PORT ?? 465);
@@ -76,6 +115,6 @@ export async function sendBudget(input: BudgetRequest & { website?: string }): P
     return { ok: true };
   } catch (error) {
     console.error("[orcamento] Falha ao enviar e-mail:", error);
-    return { ok: false, message: "Não conseguimos enviar agora." };
+    return { ok: false, message: "Não conseguimos enviar agora. Tente de novo em instantes." };
   }
 }
