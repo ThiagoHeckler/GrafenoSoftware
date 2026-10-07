@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { GrapheneMotion } from "./graphene-motion";
+import { GrapheneLattice } from "./graphene-lattice";
 
 /*
  * Por que "Grafeno": cada propriedade real do material vira uma promessa
@@ -40,9 +40,9 @@ export function GrapheneWhy() {
             dos materiais mais finos, leves e resistentes já descobertos, e conduz energia como poucos.
             É assim que a gente pensa software.
           </p>
-          <figure className="why-art">
-            <GrapheneMotion />
-            <figcaption>Cada ponto é um átomo de carbono, vibrando como numa rede de verdade. Isolado em 2004, o grafeno rendeu o Nobel de Física de 2010.</figcaption>
+          <figure className="why-art" data-reveal="lattice">
+            <GrapheneLattice />
+            <figcaption>Cada ponto é um átomo de carbono. Isolado em 2004, o grafeno rendeu o Nobel de Física de 2010.</figcaption>
           </figure>
         </div>
 

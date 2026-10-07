@@ -15,8 +15,10 @@ export default function PrivacyPage() {
         oficial da Grafeno Software.
       </p>
       <p>
-        Nesta versão do site, o formulário de orçamento não envia nem armazena nenhuma informação.
-        Dúvidas? <Link className="text-link" href="/orcamento">Fale com a gente</Link>.
+        Os dados do formulário de orçamento (nome, empresa, e-mail, WhatsApp e respostas sobre o
+        projeto) são enviados por e-mail para a equipe da Grafeno e usados só para responder ao seu
+        pedido. O site não guarda essas informações em banco de dados. Dúvidas?{" "}
+        <Link className="text-link" href="/orcamento">Fale com a gente</Link>.
       </p>
     </article>
   );

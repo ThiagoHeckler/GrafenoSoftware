@@ -3,50 +3,24 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cloneElement, FormEvent, ReactElement, useEffect, useRef, useState } from "react";
+import { sendBudget } from "@/app/orcamento/actions";
+import {
+  budgets,
+  companySizes,
+  deadlines,
+  emptyBudget,
+  needs,
+  segments,
+  stepOneErrors,
+  stepTwoErrors,
+  type BudgetErrors as Errors,
+  type BudgetRequest,
+} from "@/lib/budget";
 import { Icon } from "./icon";
+import { WHATSAPP_URL } from "./whatsapp-float";
 
-const segments = ["Comércio e varejo", "Alimentação", "Saúde e bem-estar", "Serviços", "Indústria", "Educação", "Outro"];
-const companySizes = ["Sou só eu", "2 a 5 pessoas", "6 a 20 pessoas", "21 a 50 pessoas", "Mais de 50 pessoas"];
-const needs = ["Site institucional", "Loja virtual", "Aplicativo", "Sistema de gestão", "Integração ou automação", "Outro"];
-const deadlines = ["O quanto antes", "Nos próximos 3 meses", "Em 3 a 6 meses", "Estou pesquisando, sem prazo definido"];
-const budgets = ["Até R$ 5 mil", "R$ 5 mil a R$ 15 mil", "R$ 15 mil a R$ 40 mil", "Acima de R$ 40 mil", "Quero entender as possibilidades"];
-
-const emptyForm = {
-  name: "",
-  company: "",
-  email: "",
-  phone: "",
-  segment: "",
-  size: "",
-  need: "",
-  details: "",
-  deadline: "",
-  budget: "",
-};
-
-type FormState = typeof emptyForm;
-type FormKey = keyof FormState;
-type Errors = Record<string, string>;
-
-/* A ordem das chaves é a ordem dos campos na tela: o primeiro erro recebe o foco. */
-function stepOneErrors(form: FormState): Errors {
-  const next: Errors = {};
-  if (!form.name.trim()) next.name = "Conte seu nome para a gente.";
-  if (!form.company.trim()) next.company = "Informe o nome da empresa.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = "Confira o e-mail: falta o @ ou o domínio.";
-  if (form.phone.replace(/\D/g, "").length < 10) next.phone = "Informe o WhatsApp com DDD, por exemplo (49) 99999-9999.";
-  return next;
-}
-
-function stepTwoErrors(form: FormState): Errors {
-  const next: Errors = {};
-  if (!form.segment) next.segment = "Selecione o segmento da empresa.";
-  if (!form.size) next.size = "Selecione o tamanho da equipe.";
-  if (!form.need) next.need = "Escolha o que você precisa.";
-  if (!form.deadline) next.deadline = "Selecione um prazo desejado.";
-  if (!form.budget) next.budget = "Selecione uma faixa de investimento.";
-  return next;
-}
+type FormKey = keyof BudgetRequest;
+type SendState = "idle" | "sending" | "sent";
 
 const fieldIdFor = (key: string) => (key === "need" ? "need-0" : key);
 
@@ -54,10 +28,12 @@ export function BudgetForm() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [submitted, setSubmitted] = useState(false);
+  const [sendState, setSendState] = useState<SendState>("idle");
+  const [sendError, setSendError] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [announcement, setAnnouncement] = useState("");
-  const [form, setForm] = useState(emptyForm);
+  const [form, setForm] = useState(emptyBudget);
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const pushedStepTwo = useRef(false);
 
@@ -66,7 +42,8 @@ export function BudgetForm() {
   const wantsStepTwo = searchParams.get("etapa") === "2";
   const step = wantsStepTwo && Object.keys(stepOneErrors(form)).length === 0 ? 2 : 1;
 
-  const dirty = !submitted && JSON.stringify(form) !== JSON.stringify(emptyForm);
+  const submitted = sendState === "sent";
+  const dirty = !submitted && JSON.stringify(form) !== JSON.stringify(emptyBudget);
 
   useEffect(() => {
     if (!dirty) return;
@@ -105,15 +82,40 @@ export function BudgetForm() {
     requestAnimationFrame(() => cardRef.current?.focus());
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (sendState === "sending") return;
     const next = step === 1 ? stepOneErrors(form) : stepTwoErrors(form);
     if (Object.keys(next).length) {
       showErrors(next);
       return;
     }
-    if (step === 1) goTo(2);
-    else setSubmitted(true);
+    if (step === 1) {
+      goTo(2);
+      return;
+    }
+
+    setSendState("sending");
+    setSendError("");
+    setAnnouncement("Enviando seu pedido…");
+    try {
+      const result = await sendBudget({ ...form, website: honeypotRef.current?.value ?? "" });
+      if (result.ok) {
+        setSendState("sent");
+        return;
+      }
+      setSendState("idle");
+      if (result.errors && Object.keys(result.errors).length) {
+        showErrors(result.errors);
+        return;
+      }
+      setSendError(result.message ?? "Não conseguimos enviar agora.");
+      setAnnouncement("O pedido não foi enviado.");
+    } catch {
+      setSendState("idle");
+      setSendError("Não conseguimos enviar agora. Confira sua conexão.");
+      setAnnouncement("O pedido não foi enviado.");
+    }
   }
 
   if (submitted) {
@@ -123,10 +125,10 @@ export function BudgetForm() {
           <circle cx="50" cy="50" r="48" />
           <path d="m32 51 12 12 24-26" />
         </svg>
-        <h2>Respostas preenchidas</h2>
+        <h2>Pedido enviado</h2>
         <p>
-          Obrigado, {form.name.split(" ")[0]}. Esta página é uma demonstração: nada foi enviado nem
-          armazenado.
+          Obrigado, {form.name.split(" ")[0]}. Recebemos seu pedido e respondemos em até 1 dia útil,
+          pelo e-mail ou WhatsApp que você informou.
         </p>
         <Link className="btn btn-primary" href="/">Voltar ao início</Link>
       </div>
@@ -142,12 +144,17 @@ export function BudgetForm() {
 
       <p className="sr-only" aria-live="polite">{announcement}</p>
 
-      <form onSubmit={handleSubmit} noValidate>
+      <form onSubmit={handleSubmit} noValidate aria-busy={sendState === "sending"}>
+        {/* Armadilha para robôs: escondida de pessoas e de leitores de tela. */}
+        <div className="honeypot" aria-hidden="true">
+          <label htmlFor="website">Site</label>
+          <input ref={honeypotRef} id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
         {step === 1 ? (
           <div key="step-one">
             <div className="form-heading">
               <h2 id="form-step-title">Como podemos chamar você?</h2>
-              <p>Usamos estes dados só para responder a você.</p>
+              <p>Usamos estes dados só para responder ao seu pedido.</p>
             </div>
             <div className="field-grid">
               <Field label="Seu nome" error={errors.name} required>
@@ -224,11 +231,22 @@ export function BudgetForm() {
                 </select>
               </Field>
             </div>
+            {sendError && (
+              <p className="form-alert" role="alert">
+                {sendError} Tente de novo em instantes ou{" "}
+                <a className="text-link" href={WHATSAPP_URL} target="_blank" rel="noreferrer">fale com a gente pelo WhatsApp</a>.
+              </p>
+            )}
             <div className="form-actions">
-              <button className="btn btn-secondary" type="button" onClick={() => goTo(1)}>Voltar</button>
-              <button className="btn btn-primary" type="submit">Enviar respostas</button>
+              <button className="btn btn-secondary" type="button" onClick={() => goTo(1)} disabled={sendState === "sending"}>Voltar</button>
+              <button className="btn btn-primary" type="submit" disabled={sendState === "sending"}>
+                {sendState === "sending" && <span className="spinner" aria-hidden="true" />}
+                {sendState === "sending" ? "Enviando…" : "Enviar pedido"}
+              </button>
             </div>
-            <p className="fine-print">Demonstração: nenhuma informação é enviada ou armazenada.</p>
+            <p className="fine-print">
+              Seus dados vão só para a equipe da Grafeno. Veja a <Link className="text-link" href="/privacidade">política de privacidade</Link>.
+            </p>
           </div>
         )}
       </form>
