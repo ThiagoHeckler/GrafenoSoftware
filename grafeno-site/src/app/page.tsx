@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Callout } from "@/components/callout";
 import { GrapheneField } from "@/components/graphene-field";
@@ -147,7 +148,7 @@ export default function HomePage() {
 
       <section id="quem-faz" className="section" aria-labelledby="author-title">
         <div className="author" data-reveal="author">
-          <span className="author-mark" aria-hidden="true">TH</span>
+          <Image className="author-mark" src="/thiago-heckler.webp" alt="Foto de Thiago Heckler" width={400} height={400} unoptimized />
           <div className="author-copy">
             <h2 id="author-title">Quem faz</h2>
             <p>

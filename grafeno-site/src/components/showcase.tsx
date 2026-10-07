@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { CSSProperties, useState } from "react";
 
 /*
@@ -44,11 +45,11 @@ const examples: Example[] = [
       title: "Pão quentinho a partir das 6h",
       text: "Encomende pelo site e retire sem fila.",
       cta: "Fazer encomenda",
-      art: "🥖",
+      art: "/showcase/padaria-hero.webp",
       cards: [
-        { art: "🥐", name: "Croissant", detail: "R$ 9,50" },
-        { art: "🍞", name: "Pão de fermentação natural", detail: "R$ 22,00" },
-        { art: "🍰", name: "Torta de morango", detail: "R$ 64,00" },
+        { art: "/showcase/padaria-croissant.webp", name: "Croissant", detail: "R$ 9,50" },
+        { art: "/showcase/padaria-pao.webp", name: "Pão de fermentação natural", detail: "R$ 22,00" },
+        { art: "/showcase/padaria-torta.webp", name: "Torta de morango", detail: "R$ 64,00" },
       ],
     },
     app: {
@@ -71,11 +72,11 @@ const examples: Example[] = [
       title: "Agende sua consulta em poucos cliques",
       text: "Horários livres em tempo real e confirmação pelo WhatsApp.",
       cta: "Agendar consulta",
-      art: "🩺",
+      art: "/showcase/clinica-hero.webp",
       cards: [
-        { art: "🦷", name: "Odontologia", detail: "Seg a sáb" },
-        { art: "👁️", name: "Oftalmologia", detail: "Ter e qui" },
-        { art: "❤️", name: "Cardiologia", detail: "Seg a sex" },
+        { art: "/showcase/clinica-odonto.webp", name: "Odontologia", detail: "Seg a sáb" },
+        { art: "/showcase/clinica-oftalmo.webp", name: "Oftalmologia", detail: "Ter e qui" },
+        { art: "/showcase/clinica-cardio.webp", name: "Cardiologia", detail: "Seg a sex" },
       ],
     },
     app: {
@@ -97,11 +98,11 @@ const examples: Example[] = [
       title: "Treine no seu ritmo e acompanhe pelo app",
       text: "Planos a partir de R$ 89 por mês.",
       cta: "Começar agora",
-      art: "🏋️",
+      art: "/showcase/academia-hero.webp",
       cards: [
-        { art: "🔥", name: "Funcional", detail: "Seg, qua e sex" },
-        { art: "🚴", name: "Bike indoor", detail: "Todo dia, 18h" },
-        { art: "🧘", name: "Yoga", detail: "Ter e qui" },
+        { art: "/showcase/academia-funcional.webp", name: "Funcional", detail: "Seg, qua e sex" },
+        { art: "/showcase/academia-bike.webp", name: "Bike indoor", detail: "Todo dia, 18h" },
+        { art: "/showcase/academia-yoga.webp", name: "Yoga", detail: "Ter e qui" },
       ],
     },
     app: {
@@ -153,12 +154,12 @@ export function Showcase() {
                     <p className="mini-text">{site.text}</p>
                     <span className="mini-cta">{site.cta}</span>
                   </div>
-                  <span className="mini-art" aria-hidden="true">{site.art}</span>
+                  <Image className="mini-art" src={site.art} alt="" width={480} height={480} loading="eager" unoptimized />
                 </div>
                 <div className="mini-cards">
                   {site.cards.map((card) => (
                     <div key={card.name}>
-                      <span aria-hidden="true">{card.art}</span>
+                      <Image src={card.art} alt="" width={240} height={240} loading="eager" unoptimized />
                       <strong>{card.name}</strong>
                       <small>{card.detail}</small>
                     </div>

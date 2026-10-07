@@ -407,17 +407,15 @@ p { margin: 0; text-wrap: pretty; }
 .mini-art {
   justify-self: center;
   width: 22cqi;
+  height: auto;
   aspect-ratio: 1;
-  display: grid;
-  place-items: center;
+  object-fit: cover;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--ex-accent) 22%, var(--ex-bg));
-  font-size: 11cqi;
-  line-height: 1;
+  box-shadow: 0 0 0 0.8cqi color-mix(in srgb, var(--ex-accent) 22%, var(--ex-bg));
 }
 .mini-cards { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqi; padding: 0 4cqi 3.4cqi; }
-.mini-cards div { display: grid; gap: 0.4cqi; padding: 1.8cqi; border-radius: 1.6cqi; background: var(--ex-surface); }
-.mini-cards span { font-size: 3.2cqi; line-height: 1.2; }
+.mini-cards div { display: grid; grid-template-columns: auto minmax(0, 1fr); align-content: center; gap: 0.4cqi 1.4cqi; padding: 1.4cqi; border-radius: 1.6cqi; background: var(--ex-surface); }
+.mini-cards img { grid-row: span 2; width: 7cqi; height: 7cqi; object-fit: cover; border-radius: 1cqi; }
 .mini-cards strong { font-size: 1.55cqi; font-weight: 700; }
 .mini-cards small { font-size: 1.4cqi; color: var(--ex-muted); }
 
@@ -616,6 +614,7 @@ p { margin: 0; text-wrap: pretty; }
   font-weight: 700;
   letter-spacing: -0.04em;
 }
+img.author-mark { height: auto; object-fit: cover; }
 .author-copy { display: grid; gap: 14px; max-width: 40rem; }
 .author-copy p { color: var(--texto-suave); font-size: 1.125rem; }
 .author-copy strong { color: var(--texto); }

@@ -17,6 +17,8 @@ const unbounded = Unbounded({
 });
 
 export const metadata: Metadata = {
+  /* Domínio público, usado para montar a URL absoluta da imagem de compartilhamento. */
+  metadataBase: new URL("https://grafenosoftware.com.br"),
   title: {
     default: "Grafeno Software — sites, aplicativos e sistemas sob medida",
     template: "%s | Grafeno Software",
