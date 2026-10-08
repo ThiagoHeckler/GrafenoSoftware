@@ -145,7 +145,7 @@ Os arquivos prontos da logo (SVG e PNG) estão no kit `identidade-covalia.zip`. 
 - [ ] `package.json`: `"name": "covalia-site"` (opcional; rodar `npm install` para atualizar o `package-lock.json`).
 - [ ] Redirecionar `grafenosoftware.com.br` para `covalia.com.br` com 301, mantendo o caminho da página (ex.: `/orcamento` → `covalia.com.br/orcamento`). Pode ser feito no painel da Hostinger ou em `next.config.ts` com `redirects()` e condição `has: [{ type: "host", value: "grafenosoftware.com.br" }]`.
 - [ ] `docs/style.md`: trocar as 16 referências à Grafeno. `README.md`, `AGENTS.md` e `CLAUDE.md` não citam a marca.
-- [ ] Opcional: renomear a pasta `grafeno-site` e o repositório no GitHub. O GitHub redireciona o endereço antigo, mas os remotes locais devem ser atualizados.
+- [x] Pasta renomeada para `covalia-site`. Opcional: renomear o repositório no GitHub. O GitHub redireciona o endereço antigo, mas os remotes locais devem ser atualizados.
 
 ### Conferência final
 - [ ] `grep -rni "grafeno" src public` só deve achar menções ao **material** (malha, ilustrações, legenda do Nobel).
