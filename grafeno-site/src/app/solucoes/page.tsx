@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Callout } from "@/components/callout";
 import { Icon } from "@/components/icon";
+import { SolutionArt, type SolutionArtKind } from "@/components/solution-art";
 
 export const metadata: Metadata = {
   title: "Soluções",
   description: "Sites, aplicativos, sistemas de gestão e integrações sob medida para o seu negócio.",
 };
 
-const solutions = [
+const solutions: {
+  id: SolutionArtKind;
+  title: string;
+  text: string;
+  includes: string[];
+  good: string;
+}[] = [
   {
     id: "sites",
     title: "Sites que trazem cliente",
@@ -59,16 +66,17 @@ export default function SolutionsPage() {
               <h2 id={`${item.id}-title`}>{item.title}</h2>
               <p>{item.text}</p>
               <p className="solution-good">{item.good}</p>
+              <div className="solution-includes">
+                <h3>O que entra</h3>
+                <ul>
+                  {item.includes.map((line) => (
+                    <li key={line}><Icon name="check" size={18} />{line}</li>
+                  ))}
+                </ul>
+                <Link className="btn btn-primary" href="/orcamento">Pedir orçamento</Link>
+              </div>
             </div>
-            <div className="solution-includes">
-              <h3>O que entra</h3>
-              <ul>
-                {item.includes.map((line) => (
-                  <li key={line}><Icon name="check" size={18} />{line}</li>
-                ))}
-              </ul>
-              <Link className="btn btn-primary" href="/orcamento">Pedir orçamento</Link>
-            </div>
+            <SolutionArt kind={item.id} />
           </section>
         ))}
       </div>
