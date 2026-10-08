@@ -1,4 +1,6 @@
 import type { CSSProperties } from "react";
+import { GlassTilt } from "./glass-tilt";
+import { GlassBackdrop } from "./glass-backdrop";
 import { GrapheneLattice } from "./graphene-lattice";
 
 /*
@@ -47,15 +49,20 @@ export function GrapheneWhy() {
           </figure>
         </div>
 
-        <ul className="why-list">
-          {properties.map((item, index) => (
-            <li key={item.title} data-reveal style={{ "--i": index } as CSSProperties}>
-              <p className="why-material">{item.material}</p>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="glass-sheets">
+          <GlassBackdrop cols={12} rows={6} lit={["2,1", "3,1", "8,1", "9,2", "4,4", "5,3"]} />
+          <GlassTilt className="why-list">
+            {properties.map((item, index) => (
+              <li key={item.title} data-reveal style={{ "--i": index } as CSSProperties}>
+                <div className="glass-pane why-pane">
+                  <p className="why-material">{item.material}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </GlassTilt>
+        </div>
       </div>
     </section>
   );

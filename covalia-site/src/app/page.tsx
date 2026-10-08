@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Callout } from "@/components/callout";
+import { GlassBackdrop } from "@/components/glass-backdrop";
+import { GlassTilt } from "@/components/glass-tilt";
 import { GrapheneField } from "@/components/graphene-field";
 import { GrapheneWhy } from "@/components/graphene-why";
 import { Icon, type IconName } from "@/components/icon";
@@ -114,20 +116,25 @@ export default function HomePage() {
           <h2 id="pillars-title">Por que escolher a Covalia</h2>
           <p>Seu site ou sistema é parte do negócio. Ele precisa trabalhar tão bem quanto a sua equipe.</p>
         </div>
-        <ul className="pillars">
-          {pillars.map((pillar, index) => (
-            <li key={pillar.title} data-reveal style={{ "--i": index } as CSSProperties}>
-              <span className="pillar-atom" aria-hidden="true"><Icon name={pillar.icon} size={22} /></span>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.text}</p>
-              <ul>
-                {pillar.proof.map((item) => (
-                  <li key={item}><Icon name="check" size={16} />{item}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+        <div className="glass-sheets">
+          <GlassBackdrop cols={14} rows={5} lit={["1,1", "3,3", "6,1", "7,2", "11,1", "12,3"]} />
+          <GlassTilt className="pillars">
+            {pillars.map((pillar, index) => (
+              <li key={pillar.title} data-reveal style={{ "--i": index } as CSSProperties}>
+                <div className="glass-pane pillar-pane">
+                  <span className="pillar-atom" aria-hidden="true"><Icon name={pillar.icon} size={22} /></span>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.text}</p>
+                  <ul>
+                    {pillar.proof.map((item) => (
+                      <li key={item}><Icon name="check" size={16} />{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </GlassTilt>
+        </div>
       </section>
 
       <section className="section" aria-labelledby="process-title">

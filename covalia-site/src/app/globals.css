@@ -22,6 +22,16 @@
   --ligacao-fundo: #dce7f3;
   --sobre-ligacao: #ffffff;
   --atomo-livre: #78b0e3;
+  /* Vidro: lâminas sobre a malha (Por que Covalia, Por que escolher, Soluções). */
+  --vidro: color-mix(in srgb, var(--superficie) 62%, transparent);
+  --vidro-borda: color-mix(in srgb, var(--linha) 85%, transparent);
+  --vidro-reflexo: rgb(255 255 255 / 0.8);
+  --vidro-luz: color-mix(in srgb, var(--ligacao-viva) 16%, transparent);
+  --vidro-ativo: color-mix(in srgb, var(--ligacao) 35%, transparent);
+  --vidro-malha: color-mix(in srgb, var(--ligacao) 18%, transparent);
+  --vidro-aceso: color-mix(in srgb, var(--ligacao-viva) 24%, transparent);
+  --vidro-sombra: 0 28px 48px -32px rgb(15 27 45 / 0.35);
+  --vidro-solido: var(--superficie);
   --btn-bg: #0f1b2d;
   --btn-bg-hover: #26375a;
   --btn-text: #ffffff;
@@ -64,6 +74,11 @@
     --ligacao-fundo: #1b3150;
     --sobre-ligacao: #0d1626;
     --atomo-livre: #ffffff;
+    --vidro: color-mix(in srgb, var(--superficie) 58%, transparent);
+    --vidro-reflexo: color-mix(in srgb, var(--texto) 10%, transparent);
+    --vidro-malha: color-mix(in srgb, var(--ligacao) 26%, transparent);
+    --vidro-aceso: color-mix(in srgb, var(--ligacao) 50%, transparent);
+    --vidro-sombra: 0 28px 48px -32px rgb(0 0 0 / 0.7);
     --btn-bg: #e6ecf5;
     --btn-bg-hover: #ffffff;
     --btn-text: #0d1626;
@@ -91,6 +106,11 @@
   --ligacao-fundo: #1b3150;
   --sobre-ligacao: #0d1626;
   --atomo-livre: #ffffff;
+  --vidro: color-mix(in srgb, var(--superficie) 58%, transparent);
+  --vidro-reflexo: color-mix(in srgb, var(--texto) 10%, transparent);
+  --vidro-malha: color-mix(in srgb, var(--ligacao) 26%, transparent);
+  --vidro-aceso: color-mix(in srgb, var(--ligacao) 50%, transparent);
+  --vidro-sombra: 0 28px 48px -32px rgb(0 0 0 / 0.7);
   --btn-bg: #e6ecf5;
   --btn-bg-hover: #ffffff;
   --btn-text: #0d1626;
@@ -133,7 +153,8 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-main { flex: 1; }
+/* A malha atrás do vidro passa da borda do conteúdo; sem rolagem lateral. */
+main { flex: 1; overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
 ::selection { background: var(--ligacao); color: var(--sobre-ligacao); }
@@ -543,9 +564,59 @@ p { margin: 0; text-wrap: pretty; }
 .rail-items li, .pillars ul li, .solution-includes li { display: flex; align-items: baseline; gap: 10px; font-weight: 500; }
 .rail-items svg, .pillars ul svg, .solution-includes svg { flex: none; color: var(--ligacao); transform: translateY(3px); }
 
+/* ---------- Vidro ---------- */
+
+/* Lâminas de vidro sobre a malha: nítida entre os cartões, desfocada por baixo. */
+.glass-sheets { position: relative; isolation: isolate; }
+.glass-backdrop {
+  position: absolute;
+  inset: -36px;
+  z-index: -1;
+  width: calc(100% + 72px);
+  height: calc(100% + 72px);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent);
+}
+.glass-backdrop-bond { fill: none; stroke: var(--vidro-malha); stroke-width: 1.4; }
+.glass-backdrop-glow { fill: var(--vidro-aceso); }
+.glass-pane {
+  position: relative;
+  display: grid;
+  align-content: start;
+  overflow: hidden;
+  border-radius: var(--r-cartao);
+  border: 1px solid var(--vidro-borda);
+  background: var(--vidro);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: inset 0 1px 0 var(--vidro-reflexo), var(--vidro-sombra);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.4s ease;
+}
+/* Reflexo: a luz fica onde o mouse está. */
+.glass-pane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), var(--vidro-luz), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.glass-pane > * { position: relative; }
+.glass-pane[data-active] {
+  border-color: var(--vidro-ativo);
+  transition: transform 0.15s ease-out, border-color 0.4s ease;
+}
+.glass-pane[data-active]::before { opacity: 1; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-pane { background: var(--vidro-solido); }
+}
+
 /* ---------- Por que Covalia ---------- */
 
-.why { background: var(--carbono); color: var(--carbono-texto); }
+.why { background: var(--carbono); color: var(--carbono-texto); overflow: clip; }
 .why-inner {
   max-width: var(--max);
   margin: 0 auto;
@@ -583,11 +654,25 @@ p { margin: 0; text-wrap: pretty; }
 }
 .why-art figcaption { margin-top: 14px; font-size: 0.875rem; color: var(--carbono-suave); }
 
-.why-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--carbono-linha); border: 1px solid var(--carbono-linha); border-radius: var(--r-cartao); overflow: hidden; }
-.why-list li { display: grid; align-content: start; gap: 8px; padding: clamp(22px, 3vw, 32px); background: var(--carbono); }
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.why-list li { display: grid; }
+.why-pane { gap: 8px; padding: clamp(22px, 3vw, 32px); }
+/* O fundo da seção é sempre carbono: o vidro segue esse fundo nos dois temas. */
+.why {
+  --vidro: color-mix(in srgb, var(--carbono) 58%, transparent);
+  --vidro-borda: color-mix(in srgb, var(--carbono-texto) 12%, transparent);
+  --vidro-reflexo: color-mix(in srgb, var(--carbono-texto) 10%, transparent);
+  --vidro-luz: color-mix(in srgb, var(--acento-carbono) 20%, transparent);
+  --vidro-ativo: color-mix(in srgb, var(--acento-carbono) 40%, transparent);
+  --vidro-malha: color-mix(in srgb, var(--acento-carbono) 30%, transparent);
+  --vidro-aceso: color-mix(in srgb, var(--acento-carbono) 55%, transparent);
+  --vidro-sombra: 0 28px 48px -32px rgb(0 0 0 / 0.7);
+  --vidro-solido: var(--carbono);
+}
+
 .why-material { font-size: 0.9375rem; color: var(--acento-carbono); font-weight: 600; }
 .why-list h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
-.why-list li > p:last-child { color: var(--carbono-suave); }
+.why-pane > p:last-child { color: var(--carbono-suave); }
 
 :root[data-theme="dark"] .why { border-block: 1px solid var(--linha); }
 @media (prefers-color-scheme: dark) {
@@ -602,15 +687,13 @@ p { margin: 0; text-wrap: pretty; }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-radius: var(--r-painel);
-  background: var(--superficie);
-  box-shadow: inset 0 0 0 1px var(--linha);
+  gap: 14px;
 }
-.pillars > li { display: grid; align-content: start; gap: 12px; padding: clamp(24px, 3.5vw, 40px); }
-.pillars > li + li { border-left: 1px solid var(--linha); }
+.pillars > li { display: grid; }
+.pillar-pane { gap: 12px; padding: clamp(24px, 3.5vw, 40px); }
 .pillar-atom { width: 56px; height: 56px; margin-bottom: 4px; }
 .pillars h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
-.pillars > li > p { color: var(--texto-suave); }
+.pillar-pane > p { color: var(--texto-suave); }
 .pillars ul { margin-top: 8px; padding-top: 16px; border-top: 1px dashed var(--linha); }
 
 /* ---------- Como trabalhamos: cadeia ---------- */
@@ -785,12 +868,9 @@ img.author-mark { height: auto; object-fit: cover; }
   gap: 18px;
   justify-items: start;
   align-content: start;
-  margin-top: 28px;
   padding: clamp(20px, 2.6vw, 28px);
-  border-radius: var(--r-cartao);
-  background: var(--superficie);
-  box-shadow: inset 0 0 0 1px var(--linha);
 }
+.solution-sheets { margin-top: 28px; }
 .solution-includes h3 { font-size: 1rem; }
 .solution-includes ul { width: 100%; }
 
@@ -1235,7 +1315,6 @@ img.author-mark { height: auto; object-fit: cover; }
   .sol-art { max-width: 40rem; }
   .why-art { max-width: 520px; }
   .pillars { grid-template-columns: 1fr; }
-  .pillars > li + li { border-left: 0; border-top: 1px solid var(--linha); }
   .chain { grid-template-columns: 1fr; gap: 0; }
   .chain li { grid-template-columns: 54px 1fr; column-gap: 18px; row-gap: 2px; padding-bottom: 28px; }
   .chain .chain-atom { grid-row: span 2; margin: 0; }

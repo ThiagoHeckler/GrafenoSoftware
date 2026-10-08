@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Callout } from "@/components/callout";
+import { GlassBackdrop } from "@/components/glass-backdrop";
+import { GlassTilt } from "@/components/glass-tilt";
 import { Icon } from "@/components/icon";
 import { SolutionArt, type SolutionArtKind } from "@/components/solution-art";
 
@@ -66,15 +68,18 @@ export default function SolutionsPage() {
               <h2 id={`${item.id}-title`}>{item.title}</h2>
               <p>{item.text}</p>
               <p className="solution-good">{item.good}</p>
-              <div className="solution-includes">
-                <h3>O que entra</h3>
-                <ul>
-                  {item.includes.map((line) => (
-                    <li key={line}><Icon name="check" size={18} />{line}</li>
-                  ))}
-                </ul>
-                <Link className="btn btn-primary" href="/orcamento">Pedir orçamento</Link>
-              </div>
+              <GlassTilt as="div" className="glass-sheets solution-sheets">
+                <GlassBackdrop cols={8} rows={4} lit={["1,1", "5,2", "6,0"]} />
+                <div className="glass-pane solution-includes">
+                  <h3>O que entra</h3>
+                  <ul>
+                    {item.includes.map((line) => (
+                      <li key={line}><Icon name="check" size={18} />{line}</li>
+                    ))}
+                  </ul>
+                  <Link className="btn btn-primary" href="/orcamento">Pedir orçamento</Link>
+                </div>
+              </GlassTilt>
             </div>
             <SolutionArt kind={item.id} />
           </section>
