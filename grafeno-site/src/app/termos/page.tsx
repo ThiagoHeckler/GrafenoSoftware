@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Termos de uso",
-  description: "Termos de uso do site da Grafeno Software.",
+  description: "Termos de uso do site da Covalia Software.",
 };
 
 export default function TermsPage() {
@@ -12,7 +12,7 @@ export default function TermsPage() {
       <h1 id="legal-title">Termos de uso</h1>
       <p className="legal-note">
         Conteúdo demonstrativo. Antes de publicar, substitua este texto pelos termos de uso oficiais
-        da Grafeno Software.
+        da Covalia Software.
       </p>
       <p>
         As telas, pedidos e valores mostrados no site são ilustrativos. Para condições reais de

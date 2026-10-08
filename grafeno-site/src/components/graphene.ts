@@ -1,6 +1,6 @@
 /*
  * Geometria da rede do grafeno: hexágonos de topo plano, um átomo em cada
- * vértice e uma ligação em cada aresta. Usada no herói e em "Por que Grafeno".
+ * vértice e uma ligação em cada aresta. Usada no herói e em "Por que Covalia".
  */
 
 export type Point = { x: number; y: number };

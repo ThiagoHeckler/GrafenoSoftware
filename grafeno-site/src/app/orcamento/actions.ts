@@ -103,7 +103,7 @@ export async function sendBudget(input: BudgetRequest & { website?: string }): P
 
   try {
     await transporter.sendMail({
-      from: `"Site Grafeno" <${SMTP_USER}>`,
+      from: `"Site Covalia" <${SMTP_USER}>`,
       to: MAIL_TO || SMTP_USER,
       replyTo: { name: form.name, address: form.email },
       subject: `Novo pedido de orçamento: ${form.need}, ${form.company}`,

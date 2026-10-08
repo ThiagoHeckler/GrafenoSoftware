@@ -288,7 +288,7 @@ export function BudgetForm() {
               </button>
             </div>
             <p className="fine-print">
-              Seus dados vão só para a equipe da Grafeno. Veja a <Link className="text-link" href="/privacidade">política de privacidade</Link>.
+              Seus dados vão só para a equipe da Covalia. Veja a <Link className="text-link" href="/privacidade">política de privacidade</Link>.
             </p>
           </div>
         )}

@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 import { GrapheneLattice } from "./graphene-lattice";
 
 /*
- * Por que "Grafeno": cada propriedade real do material vira uma promessa
- * sobre o software que a Grafeno entrega.
+ * Por que "Covalia": o nome vem da ligação que une o carbono no grafeno, e cada
+ * propriedade real do material vira uma promessa sobre o software que a Covalia entrega.
  */
 
 const properties = [
@@ -34,11 +34,12 @@ export function GrapheneWhy() {
     <section className="why" aria-labelledby="why-title">
       <div className="why-inner">
         <div className="why-intro" data-reveal>
-          <h2 id="why-title">Por que Grafeno?</h2>
+          <h2 id="why-title">Por que Covalia?</h2>
           <p>
-            Grafeno é uma camada de carbono com a espessura de um átomo, arrumada em hexágonos. É um
-            dos materiais mais finos, leves e resistentes já descobertos, e conduz energia como poucos.
-            É assim que a gente pensa software.
+            Covalia vem de ligação covalente: a ligação química em que os átomos compartilham o que
+            têm para formar algo mais forte. É ela que une o carbono no grafeno, um dos materiais mais
+            finos, leves e resistentes já descobertos. É assim que a gente pensa software: construído
+            lado a lado com o seu negócio.
           </p>
           <figure className="why-art" data-reveal="lattice">
             <GrapheneLattice />

@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   /* Domínio público, usado para montar a URL absoluta da imagem de compartilhamento. */
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Grafeno Software — sites, aplicativos e sistemas sob medida",
-    template: "%s | Grafeno Software",
+    default: "Covalia Software — sites, aplicativos e sistemas sob medida",
+    template: "%s | Covalia Software",
   },
   description:
-    "A Grafeno cria sites, aplicativos e sistemas inteligentes e robustos para empresas de todos os tamanhos.",
+    "A Covalia cria sites, aplicativos e sistemas inteligentes e robustos para empresas de todos os tamanhos.",
 };
 
 export const viewport: Viewport = {

@@ -1,7 +1,7 @@
 import { Icon } from "./icon";
 
 /* Mensagem que já abre escrita na conversa; o cliente pode editar antes de enviar. */
-const WHATSAPP_MESSAGE = "Olá, Thiago! Vim pelo site da Grafeno e gostaria de conversar sobre um projeto.";
+const WHATSAPP_MESSAGE = "Olá, Thiago! Vim pelo site da Covalia e gostaria de conversar sobre um projeto.";
 
 export const WHATSAPP_URL = `https://wa.me/5549920009247?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
@@ -12,7 +12,7 @@ export function WhatsAppFloat() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      aria-label="Conversar com a Grafeno pelo WhatsApp"
+      aria-label="Conversar com a Covalia pelo WhatsApp"
     >
       <Icon name="whatsapp" size={24} />
     </a>

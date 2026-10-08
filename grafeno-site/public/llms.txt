@@ -1,15 +1,15 @@
-# Grafeno Software
+# Covalia Software
 
-> A Grafeno Software projeta e desenvolve sites, aplicativos e sistemas sob medida para empresas de todos os tamanhos no Brasil. Os projetos são pensados para ser inteligentes no que automatizam, robustos no que entregam e simples para quem usa.
+> A Covalia Software projeta e desenvolve sites, aplicativos e sistemas sob medida para empresas de todos os tamanhos no Brasil. Os projetos são pensados para ser inteligentes no que automatizam, robustos no que entregam e simples para quem usa.
 
-A empresa é tocada por Thiago Heckler, desenvolvedor de software. O atendimento é direto com quem constrói, do primeiro contato ao suporte depois do lançamento. O nome vem do grafeno, uma camada de carbono com a espessura de um átomo: fina, leve, muito resistente e boa condutora. São as qualidades que a Grafeno busca no software que entrega.
+A empresa é tocada por Thiago Heckler, desenvolvedor de software. O atendimento é direto com quem constrói, do primeiro contato ao suporte depois do lançamento. Covalia vem de ligação covalente: a ligação química em que os átomos compartilham o que têm para formar algo mais forte. É ela que une o carbono no grafeno, um dos materiais mais finos, leves e resistentes já descobertos. É assim que a Covalia pensa software: construído lado a lado com o negócio do cliente.
 
-## O que a Grafeno faz
+## O que a Covalia faz
 
-- [Sites](https://grafenosoftware.com.br/solucoes#sites): sites institucionais, landing pages e lojas virtuais com Pix e cartão, rápidos no celular, fáceis de achar no Google e com painel para o cliente editar o conteúdo. Inclui configuração de domínio, hospedagem e e-mail.
-- [Aplicativos](https://grafenosoftware.com.br/solucoes#aplicativos): apps para Android e iPhone com a marca do cliente, como agendamento, pedidos, área do cliente e fidelidade, com login, notificações, pagamentos e publicação nas lojas.
-- [Sistemas de gestão](https://grafenosoftware.com.br/solucoes#sistemas): sistemas web sob medida para vendas, estoque, financeiro, agenda e equipe, com relatórios, permissões por usuário e importação das planilhas atuais. Funcionam no navegador, sem instalar nada.
-- [Integrações e automações](https://grafenosoftware.com.br/solucoes#integracoes): emissão de NF-e e NFC-e, pagamentos e conciliação, mensagens automáticas por WhatsApp e e-mail, e conexão com ERPs e APIs.
+- [Sites](https://covalia.com.br/solucoes#sites): sites institucionais, landing pages e lojas virtuais com Pix e cartão, rápidos no celular, fáceis de achar no Google e com painel para o cliente editar o conteúdo. Inclui configuração de domínio, hospedagem e e-mail.
+- [Aplicativos](https://covalia.com.br/solucoes#aplicativos): apps para Android e iPhone com a marca do cliente, como agendamento, pedidos, área do cliente e fidelidade, com login, notificações, pagamentos e publicação nas lojas.
+- [Sistemas de gestão](https://covalia.com.br/solucoes#sistemas): sistemas web sob medida para vendas, estoque, financeiro, agenda e equipe, com relatórios, permissões por usuário e importação das planilhas atuais. Funcionam no navegador, sem instalar nada.
+- [Integrações e automações](https://covalia.com.br/solucoes#integracoes): emissão de NF-e e NFC-e, pagamentos e conciliação, mensagens automáticas por WhatsApp e e-mail, e conexão com ERPs e APIs.
 
 ## Como funciona um projeto
 
@@ -17,21 +17,21 @@ A empresa é tocada por Thiago Heckler, desenvolvedor de software. O atendimento
 2. Proposta: escopo, prazo e investimento por escrito.
 3. Design: o cliente vê e aprova as telas antes do código.
 4. Desenvolvimento: entregas curtas, com acesso para testar desde cedo.
-5. Lançamento e suporte: o projeto vai ao ar e a Grafeno segue acompanhando.
+5. Lançamento e suporte: o projeto vai ao ar e a Covalia segue acompanhando.
 
 ## Contato
 
-- [Pedir orçamento](https://grafenosoftware.com.br/orcamento): formulário rápido em duas etapas; a primeira conversa é sem compromisso.
+- [Pedir orçamento](https://covalia.com.br/orcamento): formulário rápido em duas etapas; a primeira conversa é sem compromisso.
 - [WhatsApp](https://wa.me/5549991382347)
 
 ## Páginas
 
-- [Início](https://grafenosoftware.com.br/): visão geral, exemplos de projetos (padaria, clínica e academia), por que escolher a Grafeno e quem faz.
-- [Soluções](https://grafenosoftware.com.br/solucoes): detalhes de cada serviço e o que entra em cada um.
-- [Pedir orçamento](https://grafenosoftware.com.br/orcamento)
+- [Início](https://covalia.com.br/): visão geral, exemplos de projetos (padaria, clínica e academia), por que escolher a Covalia e quem faz.
+- [Soluções](https://covalia.com.br/solucoes): detalhes de cada serviço e o que entra em cada um.
+- [Pedir orçamento](https://covalia.com.br/orcamento)
 
 ## Optional
 
-- [Portfólio de Thiago Heckler](https://thiagoheckler.com.br): projetos e estudos do desenvolvedor por trás da Grafeno.
-- [Privacidade](https://grafenosoftware.com.br/privacidade)
-- [Termos de uso](https://grafenosoftware.com.br/termos)
+- [Portfólio de Thiago Heckler](https://thiagoheckler.com.br): projetos e estudos do desenvolvedor por trás da Covalia.
+- [Privacidade](https://covalia.com.br/privacidade)
+- [Termos de uso](https://covalia.com.br/termos)

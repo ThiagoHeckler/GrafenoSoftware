@@ -5,7 +5,7 @@ import type { CSSProperties, ReactNode } from "react";
  * Ilustrações dos cartões de Soluções. Cada tela usa a paleta do cliente de
  * exemplo da vitrine (Clínica, Academia, Padaria), porque cada projeto ganha a
  * identidade do negócio. Só o mapa de integrações fala com as cores da
- * Grafeno: ali o desenho é a própria rede de grafeno, com o dado passando.
+ * Covalia: ali o desenho é a própria rede de grafeno, com o dado passando.
  * Medidas em cqi para escalar junto com o cartão.
  */
 

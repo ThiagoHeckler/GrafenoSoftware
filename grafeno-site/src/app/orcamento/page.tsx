@@ -5,7 +5,7 @@ import { WHATSAPP_URL } from "@/components/whatsapp-float";
 
 export const metadata: Metadata = {
   title: "Pedir orçamento",
-  description: "Conte um pouco sobre a sua empresa para a Grafeno preparar uma conversa objetiva.",
+  description: "Conte um pouco sobre a sua empresa para a Covalia preparar uma conversa objetiva.",
 };
 
 export default function BudgetPage() {

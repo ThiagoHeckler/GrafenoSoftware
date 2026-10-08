@@ -6,7 +6,7 @@ import { CSSProperties, useState } from "react";
 /*
  * Vitrine do herói: um notebook aberto com o site e um celular com o app
  * do mesmo cliente. Cada exemplo tem paleta própria para mostrar que cada
- * projeto ganha a identidade do negócio, não a da Grafeno.
+ * projeto ganha a identidade do negócio, não a da Covalia.
  */
 
 type Example = {

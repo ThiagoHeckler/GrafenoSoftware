@@ -2,8 +2,8 @@
 
 Especificação visual do site principal (`site/`). A fonte da verdade é
 `site/css/custom.css`; este arquivo explica as decisões e serve de referência
-para manter o portfólio coerente com a **Grafeno Software**
-(`grafenosoftware.com.br`), para onde o site leva visitantes.
+para manter o portfólio coerente com a **Covalia Software**
+(`covalia.com.br`), para onde o site leva visitantes.
 
 ## 1. Identidade em uma frase
 
@@ -82,12 +82,12 @@ Se `--bg` mudar, atualizar também o script inline do `<head>` em `index.html`.
   com atraso escalonado de 0.08s. Tudo desligado em `prefers-reduced-motion`.
 - **Pontos de quebra:** 1000px (palco fixo vira abas em pílula) e 640px (celular).
 
-## 5. Comparação com a Grafeno Software
+## 5. Comparação com a Covalia Software
 
-Extraído do CSS publicado em `grafenosoftware.com.br` em 2026-10-07, antes
-do alinhamento.
+Extraído do CSS publicado em `grafenosoftware.com.br` (endereço anterior da
+Covalia) em 2026-10-07, antes do alinhamento.
 
-| Papel             | Portfólio (escuro) | Grafeno (escuro) | Portfólio (claro) | Grafeno (claro) |
+| Papel             | Portfólio (escuro) | Covalia (escuro) | Portfólio (claro) | Covalia (claro) |
 |-------------------|--------------------|------------------|-------------------|-----------------|
 | Fundo             | `#0d1626`          | `#0c1715`        | `#eef2f7`         | `#f3f6f5`       |
 | Superfície        | `#121f35`          | `#13221f`        | `#ffffff`         | `#ffffff`       |
@@ -105,40 +105,40 @@ claridade, tema escuro com alternância para claro e respeito à preferência do
 sistema.
 
 **O que quebra a transição:** praticamente só o **matiz** dos neutros. O
-portfólio puxa para o azul (matiz ≈ 218°) e a Grafeno para o verde (≈ 168°).
+portfólio puxa para o azul (matiz ≈ 218°) e a Covalia para o verde (≈ 168°).
 Como fundo, superfícies e linhas mudam de tom ao mesmo tempo, a página inteira
 parece "outra marca". Fontes e raios diferentes reforçam a sensação.
 
 ### Caminhos para alinhar
 
-1. **Portfólio adota os neutros da Grafeno** (trocar só os 6 tokens da seção
-   2.1 pelos valores da coluna Grafeno). Transição mais suave, mudança pequena
+1. **Portfólio adota os neutros da Covalia** (trocar só os 6 tokens da seção
+   2.1 pelos valores da coluna Covalia). Transição mais suave, mudança pequena
    no CSS. Ponto de atenção: o verde do MongoDB (`#5ccb93`) fica muito próximo
-   do verde da Grafeno (`#2bd497`) e o azul do Postgres passa a ser o elemento
+   do verde da Covalia (`#2bd497`) e o azul do Postgres passa a ser o elemento
    que destoa; a regra "cor = banco" precisaria ser revista ou mantida só nas
    telas dos projetos.
-2. **Grafeno adota os neutros do portfólio** (marinho) e mantém o verde só como
-   destaque da marca. Menos mudanças na Grafeno do que parece, porque a
+2. **Covalia adota os neutros do portfólio** (marinho) e mantém o verde só como
+   destaque da marca. Menos mudanças na Covalia do que parece, porque a
    estrutura de tokens é a mesma.
 3. **Neutro comum** sem matiz forte (cinza grafite, ex.: fundo `#111416`) nos
    dois sites, e cada um mantém o próprio destaque. Exige mexer nos dois.
 
 **Decisão (2026-10-07): opção 2.** A opção 1 foi testada no portfólio e
-descartada. O portfólio mantém o marinho; a Grafeno Software passa a usar os
+descartada. O portfólio mantém o marinho; a Covalia Software passa a usar os
 neutros da seção 2.1 (mesmos valores, nos dois temas) e mantém o verde
 (`#2bd497` escuro / `#07754d` claro) apenas como cor de destaque da marca.
 O verde claro era `#0a8a5c`; foi escurecido para passar no contraste 4.5:1
 sobre o fundo `#eef2f7` e com texto branco nos botões.
-Mapeamento direto de tokens na Grafeno: `--fundo` = `--bg`,
+Mapeamento direto de tokens na Covalia: `--fundo` = `--bg`,
 `--superficie` = `--surface`, `--superficie-2` = `--surface-2`,
 `--linha` = `--line`, `--texto` = `--text`, `--texto-suave` = `--muted`;
 `--carbono*` e `--sombra` acompanham os mesmos tons marinho.
 
-**Atualização (2026-10-07): destaque azul.** A Grafeno deixou o verde e passou a
+**Atualização (2026-10-07): destaque azul.** A Covalia deixou o verde e passou a
 usar o azul do portfólio (`--pg`: `#78b0e3` escuro / `#2f6690` claro) em todo
 destaque: ligações e átomos do grafeno, links, foco, seleções, ícone e chamada
 final. O botão principal segue a seção 2.3 (invertido, `--btn-bg` / `--btn-text`)
-e a sombra também. Na Grafeno o azul é cor da marca, não indica banco de dados.
+e a sombra também. Na Covalia o azul é cor da marca, não indica banco de dados.
 Únicas exceções: o botão do WhatsApp (verde da marca WhatsApp) e as cores
 próprias dos clientes fictícios na vitrine do herói.
 

@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
     webpackBuildWorker: false,
     cpus: 1,
   },
+  /*
+   * O domínio antigo (grafenosoftware.com.br) continua registrado e leva para
+   * o novo com 301, mantendo o caminho, para não perder links já divulgados.
+   */
+  async redirects() {
+    return ["grafenosoftware.com.br", "www.grafenosoftware.com.br"].map((value) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value }],
+      destination: "https://covalia.com.br/:path*",
+      permanent: true,
+    }));
+  },
 };
 
 export default nextConfig;

@@ -9,7 +9,7 @@ import { createLattice, toPath } from "@/components/graphene";
  * Gerada no build; as subpáginas herdam esta imagem.
  */
 
-export const alt = "Grafeno Software: sites, aplicativos e sistemas que fazem seu negócio andar.";
+export const alt = "Covalia Software: sites, aplicativos e sistemas que fazem seu negócio andar.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,8 +40,8 @@ export default function Image() {
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
             <img src={`data:image/svg+xml;base64,${icon}`} alt="" width={64} height={64} />
             <span style={{ display: "flex", alignItems: "baseline", fontFamily: "Unbounded", fontSize: 32, letterSpacing: -1, color: "#e6ecf5" }}>
-              grafeno
-              <span style={{ marginLeft: 10, fontFamily: "Figtree", fontWeight: 500, letterSpacing: 0, color: "#9fb5af" }}>software</span>
+              covalia
+              <span style={{ marginLeft: 10, fontFamily: "Figtree", fontWeight: 500, letterSpacing: 0, color: "#8fa0b8" }}>software</span>
             </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>

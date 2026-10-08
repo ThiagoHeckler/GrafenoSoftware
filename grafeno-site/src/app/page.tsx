@@ -72,7 +72,7 @@ export default function HomePage() {
           <div className="hero-copy">
             <h1 id="hero-title">Sites, aplicativos e sistemas que fazem seu negócio andar.</h1>
             <p>
-              A Grafeno projeta e desenvolve software sob medida: inteligente no que automatiza,
+              A Covalia projeta e desenvolve software sob medida: inteligente no que automatiza,
               robusto no que entrega e simples para quem usa.
             </p>
             <div className="hero-actions">
@@ -111,7 +111,7 @@ export default function HomePage() {
 
       <section className="section" aria-labelledby="pillars-title">
         <div className="section-intro" data-reveal>
-          <h2 id="pillars-title">Por que escolher a Grafeno</h2>
+          <h2 id="pillars-title">Por que escolher a Covalia</h2>
           <p>Seu site ou sistema é parte do negócio. Ele precisa trabalhar tão bem quanto a sua equipe.</p>
         </div>
         <ul className="pillars">
@@ -152,7 +152,7 @@ export default function HomePage() {
           <div className="author-copy">
             <h2 id="author-title">Quem faz</h2>
             <p>
-              Oi, eu sou o <strong>Thiago Heckler</strong>, desenvolvedor de software. Criei a Grafeno para
+              Oi, eu sou o <strong>Thiago Heckler</strong>, desenvolvedor de software. Criei a Covalia para
               levar a empresas de qualquer tamanho o cuidado técnico de projetos grandes: código bem feito,
               design claro e suporte de perto, com quem construiu.
             </p>

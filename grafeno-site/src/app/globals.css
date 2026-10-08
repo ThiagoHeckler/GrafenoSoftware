@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /*
- * Grafeno Software
- * Cor: superfícies frias de carbono e a ligação verde do grafeno como
+ * Covalia Software
+ * Cor: superfícies frias de carbono e a ligação azul do grafeno como
  * estrutura (trilhos, cadeias, correntes), nunca como enfeite solto.
  * Tipo: Unbounded nos títulos (larga, quase hexagonal); Figtree no texto.
  * Tema: segue o sistema; o botão do cabeçalho fixa claro ou escuro.
@@ -21,6 +21,7 @@
   --ligacao-viva: #4a86bd;
   --ligacao-fundo: #dce7f3;
   --sobre-ligacao: #ffffff;
+  --atomo-livre: #78b0e3;
   --btn-bg: #0f1b2d;
   --btn-bg-hover: #26375a;
   --btn-text: #ffffff;
@@ -62,6 +63,7 @@
     --ligacao-viva: #78b0e3;
     --ligacao-fundo: #1b3150;
     --sobre-ligacao: #0d1626;
+    --atomo-livre: #ffffff;
     --btn-bg: #e6ecf5;
     --btn-bg-hover: #ffffff;
     --btn-text: #0d1626;
@@ -88,6 +90,7 @@
   --ligacao-viva: #78b0e3;
   --ligacao-fundo: #1b3150;
   --sobre-ligacao: #0d1626;
+  --atomo-livre: #ffffff;
   --btn-bg: #e6ecf5;
   --btn-bg-hover: #ffffff;
   --btn-text: #0d1626;
@@ -235,8 +238,9 @@ p { margin: 0; text-wrap: pretty; }
 .brand { display: inline-flex; align-items: center; gap: 10px; margin-right: auto; }
 .brand-mark { flex: none; display: block; }
 .brand-mark-bg { fill: var(--ligacao); stroke: var(--ligacao); stroke-width: 4; stroke-linejoin: round; }
-.brand-mark-bond { fill: none; stroke: var(--sobre-ligacao); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.brand-mark-bond { fill: none; stroke: var(--sobre-ligacao); stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
 .brand-mark-atom { fill: var(--sobre-ligacao); }
+.brand-mark-free { fill: var(--atomo-livre); }
 .brand-name { font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
 .brand-name span { margin-left: 5px; font-family: var(--font); font-size: 1.0625rem; font-weight: 500; color: var(--texto-suave); letter-spacing: 0; }
 
@@ -539,7 +543,7 @@ p { margin: 0; text-wrap: pretty; }
 .rail-items li, .pillars ul li, .solution-includes li { display: flex; align-items: baseline; gap: 10px; font-weight: 500; }
 .rail-items svg, .pillars ul svg, .solution-includes svg { flex: none; color: var(--ligacao); transform: translateY(3px); }
 
-/* ---------- Por que Grafeno ---------- */
+/* ---------- Por que Covalia ---------- */
 
 .why { background: var(--carbono); color: var(--carbono-texto); }
 .why-inner {
@@ -791,7 +795,7 @@ img.author-mark { height: auto; object-fit: cover; }
 .solution-includes ul { width: 100%; }
 
 /*
- * Ilustrações das soluções. O quadro é da Grafeno; as telas dentro dele usam
+ * Ilustrações das soluções. O quadro é da Covalia; as telas dentro dele usam
  * a paleta do cliente (--t-*). Medidas em cqi: 100cqi = largura do quadro,
  * e a altura é 62.5cqi. Janelas e celular vazam pela borda para dar escala.
  */

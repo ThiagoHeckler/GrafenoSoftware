@@ -10,8 +10,8 @@ export function Footer() {
           <Brand />
           <p>Sites, aplicativos e sistemas sob medida, feitos para durar.</p>
         </div>
-        <nav className="footer-col" aria-label="Grafeno">
-          <h2>Grafeno</h2>
+        <nav className="footer-col" aria-label="Covalia">
+          <h2>Covalia</h2>
           <Link href="/solucoes">Soluções</Link>
           <Link href="/orcamento">Pedir orçamento</Link>
         </nav>
@@ -28,7 +28,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="footer-bottom">
-        <span>© <CurrentYear /> <span translate="no">Grafeno Software</span></span>
+        <span>© <CurrentYear /> <span translate="no">Covalia Software</span></span>
         <span>CNPJ 00.000.000/0001-00 (dado demonstrativo)</span>
       </div>
     </footer>
