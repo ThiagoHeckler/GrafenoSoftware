@@ -28,7 +28,6 @@ export function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© <CurrentYear /> <span translate="no">Covalia Software</span></span>
-        <span>CNPJ 00.000.000/0001-00 (dado demonstrativo)</span>
       </div>
     </footer>
   );

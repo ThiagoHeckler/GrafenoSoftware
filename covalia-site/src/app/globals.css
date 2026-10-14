@@ -1068,6 +1068,11 @@ p { margin: 0; text-wrap: pretty; }
 }
 .legal-page p { color: var(--texto-suave); font-size: 1.125rem; }
 .legal-page .legal-note { padding: 16px 20px; border-radius: var(--r-cartao); background: var(--ligacao-fundo); color: var(--texto); }
+.legal-page .legal-updated { font-size: 0.9375rem; margin-top: -6px; }
+.legal-page h2 { font-size: clamp(1.375rem, 2.4vw, 1.75rem); margin-top: 22px; }
+.legal-page h3 { font-size: 1.125rem; margin-top: 4px; }
+.legal-page ul { display: grid; gap: 10px; padding-left: 1.25rem; list-style: disc; color: var(--texto-suave); font-size: 1.125rem; }
+.legal-page code { font-size: 0.95em; }
 
 /* ---------- Orçamento ---------- */
 
