@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackBuildWorker: false,
     cpus: 1,
+    /*
+     * Põe o CSS dentro do HTML em vez de um <link>: o navegador pinta a página
+     * sem esperar outro arquivo, o que pesa mais no celular.
+     */
+    inlineCss: true,
   },
   /*
    * O domínio antigo (grafenosoftware.com.br) continua registrado e leva para

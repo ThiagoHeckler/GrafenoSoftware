@@ -1,6 +1,19 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import academiaBikeSm from "@/assets/showcase/academia-bike-sm.webp";
+import academiaFuncionalSm from "@/assets/showcase/academia-funcional-sm.webp";
+import academiaHeroSm from "@/assets/showcase/academia-hero-sm.webp";
+import academiaYogaSm from "@/assets/showcase/academia-yoga-sm.webp";
+import clinicaCardioSm from "@/assets/showcase/clinica-cardio-sm.webp";
+import clinicaHeroSm from "@/assets/showcase/clinica-hero-sm.webp";
+import clinicaOdontoSm from "@/assets/showcase/clinica-odonto-sm.webp";
+import clinicaOftalmoSm from "@/assets/showcase/clinica-oftalmo-sm.webp";
+import devices from "@/assets/showcase/devices.webp";
+import padariaCroissantSm from "@/assets/showcase/padaria-croissant-sm.webp";
+import padariaHeroSm from "@/assets/showcase/padaria-hero-sm.webp";
+import padariaPaoSm from "@/assets/showcase/padaria-pao-sm.webp";
+import padariaTortaSm from "@/assets/showcase/padaria-torta-sm.webp";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 
 /*
@@ -23,8 +36,8 @@ type Example = {
     title: string;
     text: string;
     cta: string;
-    art: string;
-    cards: { art: string; name: string; detail: string }[];
+    art: StaticImageData;
+    cards: { art: StaticImageData; name: string; detail: string }[];
   };
   app: {
     screen: string;
@@ -47,11 +60,11 @@ const examples: Example[] = [
       title: "Pão quentinho a partir das 6h",
       text: "Encomende pelo site e retire sem fila.",
       cta: "Fazer encomenda",
-      art: "/showcase/padaria-hero.webp",
+      art: padariaHeroSm,
       cards: [
-        { art: "/showcase/padaria-croissant.webp", name: "Croissant", detail: "R$ 9,50" },
-        { art: "/showcase/padaria-pao.webp", name: "Pão de fermentação natural", detail: "R$ 22,00" },
-        { art: "/showcase/padaria-torta.webp", name: "Torta de morango", detail: "R$ 64,00" },
+        { art: padariaCroissantSm, name: "Croissant", detail: "R$ 9,50" },
+        { art: padariaPaoSm, name: "Pão de fermentação natural", detail: "R$ 22,00" },
+        { art: padariaTortaSm, name: "Torta de morango", detail: "R$ 64,00" },
       ],
     },
     app: {
@@ -73,11 +86,11 @@ const examples: Example[] = [
       title: "Agende sua consulta em poucos cliques",
       text: "Horários livres em tempo real e confirmação pelo WhatsApp.",
       cta: "Agendar consulta",
-      art: "/showcase/clinica-hero.webp",
+      art: clinicaHeroSm,
       cards: [
-        { art: "/showcase/clinica-odonto.webp", name: "Odontologia", detail: "Seg a sáb" },
-        { art: "/showcase/clinica-oftalmo.webp", name: "Oftalmologia", detail: "Ter e qui" },
-        { art: "/showcase/clinica-cardio.webp", name: "Cardiologia", detail: "Seg a sex" },
+        { art: clinicaOdontoSm, name: "Odontologia", detail: "Seg a sáb" },
+        { art: clinicaOftalmoSm, name: "Oftalmologia", detail: "Ter e qui" },
+        { art: clinicaCardioSm, name: "Cardiologia", detail: "Seg a sex" },
       ],
     },
     app: {
@@ -98,11 +111,11 @@ const examples: Example[] = [
       title: "Treine no seu ritmo e acompanhe pelo app",
       text: "Planos a partir de R$ 89 por mês.",
       cta: "Começar agora",
-      art: "/showcase/academia-hero.webp",
+      art: academiaHeroSm,
       cards: [
-        { art: "/showcase/academia-funcional.webp", name: "Funcional", detail: "Seg, qua e sex" },
-        { art: "/showcase/academia-bike.webp", name: "Bike indoor", detail: "Todo dia, 18h" },
-        { art: "/showcase/academia-yoga.webp", name: "Yoga", detail: "Ter e qui" },
+        { art: academiaFuncionalSm, name: "Funcional", detail: "Seg, qua e sex" },
+        { art: academiaBikeSm, name: "Bike indoor", detail: "Todo dia, 18h" },
+        { art: academiaYogaSm, name: "Yoga", detail: "Ter e qui" },
       ],
     },
     app: {
@@ -223,12 +236,12 @@ export function Showcase() {
                     <p className="mini-text">{site.text}</p>
                     <span className="mini-cta">{site.cta}</span>
                   </div>
-                  <Image className="mini-art" src={site.art} alt="" width={480} height={480} loading="eager" unoptimized />
+                  <Image className="mini-art" src={site.art} alt="" width={200} height={200} loading="eager" unoptimized />
                 </div>
                 <div className="mini-cards">
                   {site.cards.map((card) => (
                     <div key={card.name}>
-                      <Image src={card.art} alt="" width={240} height={240} loading="eager" unoptimized />
+                      <Image src={card.art} alt="" width={72} height={72} loading="eager" unoptimized />
                       <strong>{card.name}</strong>
                       <small>{card.detail}</small>
                     </div>
@@ -267,7 +280,7 @@ export function Showcase() {
         </div>
       </div>
 
-      <Image className="devices-frame" src="/showcase/devices.webp" alt="" width={FRAME.width} height={FRAME.height} loading="eager" fetchPriority="high" unoptimized />
+      <Image className="devices-frame" src={devices} alt="" width={FRAME.width} height={FRAME.height} loading="eager" fetchPriority="high" unoptimized />
     </figure>
   );
 }

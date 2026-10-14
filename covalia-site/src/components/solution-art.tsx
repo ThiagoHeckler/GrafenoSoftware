@@ -1,4 +1,8 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import academiaHero from "@/assets/showcase/academia-hero.webp";
+import clinicaCardioSm from "@/assets/showcase/clinica-cardio-sm.webp";
+import clinicaHero from "@/assets/showcase/clinica-hero.webp";
+import clinicaOdontoSm from "@/assets/showcase/clinica-odonto-sm.webp";
 import type { CSSProperties, ReactNode } from "react";
 
 /*
@@ -43,7 +47,7 @@ export function SolutionArt({ kind }: { kind: SolutionArtKind }) {
   );
 }
 
-function Photo({ src, className }: { src: string; className: string }) {
+function Photo({ src, className }: { src: StaticImageData; className: string }) {
   return <Image className={className} src={src} alt="" width={240} height={240} unoptimized />;
 }
 
@@ -111,11 +115,11 @@ const art: Record<SolutionArtKind, ReactNode> = {
             <div className="art-site-text">Horários livres em tempo real e confirmação no WhatsApp.</div>
             <span className="art-site-cta">Agendar consulta</span>
           </div>
-          <Photo className="art-site-photo" src="/showcase/clinica-hero.webp" />
+          <Photo className="art-site-photo" src={clinicaHero} />
         </div>
         <div className="art-site-specs">
-          <span><Photo className="art-thumb" src="/showcase/clinica-odonto.webp" />Odontologia</span>
-          <span><Photo className="art-thumb" src="/showcase/clinica-cardio.webp" />Cardiologia</span>
+          <span><Photo className="art-thumb" src={clinicaOdontoSm} />Odontologia</span>
+          <span><Photo className="art-thumb" src={clinicaCardioSm} />Cardiologia</span>
         </div>
       </div>
       <div className="art-search">
@@ -139,7 +143,7 @@ const art: Record<SolutionArtKind, ReactNode> = {
         <div className="art-app">
           <div className="art-app-status"><span>9:41</span><i /></div>
           <div className="art-app-cover">
-            <Photo className="art-app-photo" src="/showcase/academia-hero.webp" />
+            <Photo className="art-app-photo" src={academiaHero} />
             <span><small>Treino de hoje</small><strong>Pernas e core</strong></span>
           </div>
           <div className="art-app-progress">
