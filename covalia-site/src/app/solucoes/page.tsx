@@ -77,7 +77,7 @@ export default function SolutionsPage() {
                       <li key={line}><Icon name="check" size={18} />{line}</li>
                     ))}
                   </ul>
-                  <Link className="btn btn-primary" href="/orcamento">Pedir orçamento</Link>
+                  <Link className="btn btn-primary" href="/#orcamento">Pedir orçamento</Link>
                 </div>
               </GlassTilt>
             </div>

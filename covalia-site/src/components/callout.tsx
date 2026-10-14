@@ -6,7 +6,7 @@ export function Callout() {
       <div className="callout" data-reveal>
         <h2 id="callout-title">Tem um projeto em mente?</h2>
         <p>Conte o que você precisa. A primeira conversa é sem compromisso e você sai dela com um caminho claro.</p>
-        <Link className="btn btn-light" href="/orcamento">Pedir orçamento</Link>
+        <Link className="btn btn-light" href="/#orcamento">Pedir orçamento</Link>
       </div>
     </section>
   );
