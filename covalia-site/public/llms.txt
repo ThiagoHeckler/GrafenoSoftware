@@ -26,7 +26,7 @@ A empresa é tocada por Thiago Heckler, desenvolvedor de software. O atendimento
 
 ## Páginas
 
-- [Início](https://covalia.com.br/): visão geral, exemplos de projetos (padaria, clínica e academia), por que escolher a Covalia e quem faz.
+- [Início](https://covalia.com.br/): visão geral, exemplos de projetos (padaria, clínica e academia) e por que escolher a Covalia.
 - [Soluções](https://covalia.com.br/solucoes): detalhes de cada serviço e o que entra em cada um.
 - [Pedir orçamento](https://covalia.com.br/orcamento)
 

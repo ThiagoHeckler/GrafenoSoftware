@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Unbounded } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
@@ -7,13 +7,8 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const figtree = Figtree({
-  variable: "--font-figtree",
-  subsets: ["latin", "latin-ext"],
-});
-
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin", "latin-ext"],
 });
 
@@ -29,24 +24,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eef2f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d1626" },
-  ],
+  themeColor: "#eef2f7",
 };
-
-/* Aplica o tema salvo antes da primeira pintura, para não piscar. */
-const themeScript = `(function(){try{var t=localStorage.getItem("tema");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${figtree.variable} ${unbounded.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Inline de propósito: precisa rodar antes da primeira pintura. Em dev o React
-            avisa no console que scripts não rodam em renderização no cliente; aqui ele
-            só precisa rodar no HTML do servidor, então o aviso pode ser ignorado. */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+    <html lang="pt-BR" className={roboto.variable}>
       <body>
         <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
         <Header />

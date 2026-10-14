@@ -14,9 +14,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const fontDir = join(process.cwd(), "assets/fonts");
-const [unbounded, figtree500, icon] = await Promise.all([
-  readFile(join(fontDir, "unbounded-600.ttf")),
-  readFile(join(fontDir, "figtree-500.ttf")),
+const [roboto600, roboto500, icon] = await Promise.all([
+  readFile(join(fontDir, "roboto-600.ttf")),
+  readFile(join(fontDir, "roboto-500.ttf")),
   readFile(join(process.cwd(), "src/app/icon.svg"), "base64"),
 ]);
 
@@ -33,19 +33,19 @@ const latticeSrc = `data:image/svg+xml;base64,${Buffer.from(latticeSvg).toString
 export default function Image() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", background: "#0d1626", fontFamily: "Figtree" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", background: "#0d1626", fontFamily: "Roboto" }}>
         <img src={latticeSrc} alt="" width={lattice.width} height={lattice.height} style={{ position: "absolute", top: 0, left: 0 }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, #0d1626 30%, rgba(13,22,38,0.6) 62%, rgba(13,22,38,0) 85%)" }} />
         <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "72px 80px", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
             <img src={`data:image/svg+xml;base64,${icon}`} alt="" width={64} height={64} />
-            <span style={{ display: "flex", alignItems: "baseline", fontFamily: "Unbounded", fontSize: 32, letterSpacing: -1, color: "#e6ecf5" }}>
+            <span style={{ display: "flex", alignItems: "baseline", fontFamily: "Roboto", fontWeight: 600, fontSize: 32, letterSpacing: -1, color: "#e6ecf5" }}>
               covalia
-              <span style={{ marginLeft: 10, fontFamily: "Figtree", fontWeight: 500, letterSpacing: 0, color: "#8fa0b8" }}>software</span>
+              <span style={{ marginLeft: 10, fontFamily: "Roboto", fontWeight: 500, letterSpacing: 0, color: "#8fa0b8" }}>software</span>
             </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
-            <span style={{ fontFamily: "Unbounded", fontSize: 58, lineHeight: 1.1, letterSpacing: -2, color: "#e6ecf5", maxWidth: 760 }}>
+            <span style={{ fontFamily: "Roboto", fontWeight: 600, fontSize: 58, lineHeight: 1.1, letterSpacing: -2, color: "#e6ecf5", maxWidth: 760 }}>
               Sites, aplicativos e sistemas que fazem seu negócio andar.
             </span>
             <span style={{ fontSize: 28, color: "#9fb5af" }}>
@@ -58,8 +58,8 @@ export default function Image() {
     {
       ...size,
       fonts: [
-        { name: "Unbounded", data: unbounded, weight: 600, style: "normal" },
-        { name: "Figtree", data: figtree500, weight: 500, style: "normal" },
+        { name: "Roboto", data: roboto600, weight: 600, style: "normal" },
+        { name: "Roboto", data: roboto500, weight: 500, style: "normal" },
               ],
     },
   );

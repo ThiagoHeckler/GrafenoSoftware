@@ -5,8 +5,6 @@ export type IconName =
   | "menu"
   | "x"
   | "whatsapp"
-  | "sun"
-  | "moon"
   | "globe"
   | "phone"
   | "chart"
@@ -14,14 +12,13 @@ export type IconName =
   | "spark"
   | "shield"
   | "trend"
-  | "external";
+  | "external"
+  | "search";
 
 const paths: Record<Exclude<IconName, "whatsapp">, ReactNode> = {
   check: <path d="m5 12 4 4L19 6" />,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   x: <path d="m18 6-12 12M6 6l12 12" />,
-  sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>,
-  moon: <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />,
   globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" /></>,
   phone: <><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" /><path d="M11 18.5h2" /></>,
   chart: <><path d="M4 20V4M4 20h16" /><path d="m8 15 3.5-4 3 2.5L19 8" /></>,
@@ -29,6 +26,7 @@ const paths: Record<Exclude<IconName, "whatsapp">, ReactNode> = {
   spark: <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M6.3 17.7l2.8-2.8M14.9 9.1l2.8-2.8" />,
   shield: <><path d="M12 21s7.5-3.5 7.5-10V5.5L12 3 4.5 5.5V11c0 6.5 7.5 10 7.5 10Z" /><path d="m9 12 2 2 4-4" /></>,
   trend: <><path d="m3 17 6-6 4 4 8-8" /><path d="M15 7h6v6" /></>,
+  search: <><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.4-4.4" /></>,
   external: <><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></>,
 };
 

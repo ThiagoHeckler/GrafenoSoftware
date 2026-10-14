@@ -5,12 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Brand } from "./brand";
 import { Icon } from "./icon";
-import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { href: "/", label: "Início" },
   { href: "/solucoes", label: "Soluções" },
-  { href: "/#quem-faz", label: "Quem faz" },
 ];
 
 export function Header() {
@@ -45,7 +43,6 @@ export function Header() {
       <div className="header-inner">
         <Brand />
         <div className="header-tools">
-          <ThemeToggle />
           <button
             ref={toggleRef}
             className="menu-toggle"
@@ -71,8 +68,7 @@ export function Header() {
           ))}
           <Link
             className="btn btn-primary btn-small"
-            href="/orcamento"
-            aria-current={pathname === "/orcamento" ? "page" : undefined}
+            href="/#orcamento"
             onClick={() => setOpenAt(null)}
           >
             Pedir orçamento

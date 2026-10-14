@@ -13,13 +13,12 @@ export function Footer() {
         <nav className="footer-col" aria-label="Covalia">
           <h2>Covalia</h2>
           <Link href="/solucoes">Soluções</Link>
-          <Link href="/orcamento">Pedir orçamento</Link>
+          <Link href="/#orcamento">Pedir orçamento</Link>
         </nav>
         <nav className="footer-col" aria-label="Na rede">
           <h2>Na rede</h2>
           <a href="https://thiagoheckler.com.br" target="_blank" rel="noreferrer">thiagoheckler.com.br</a>
           <a href="https://devdiary.cloud" target="_blank" rel="noreferrer">devdiary.cloud</a>
-          <a href="https://jornaldoti.com" target="_blank" rel="noreferrer">jornaldoti.com</a>
         </nav>
         <nav className="footer-col" aria-label="Informações">
           <h2>Informações</h2>

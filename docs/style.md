@@ -96,7 +96,7 @@ Covalia) em 2026-10-07, antes do alinhamento.
 | Texto             | `#e6ecf5`          | `#e6f0ed`        | `#0f1b2d`         | `#0f1f1c`       |
 | Texto suave       | `#8fa0b8`          | `#93a8a3`        | `#55647a`         | `#4a5b57`       |
 | Destaque da marca | — (azul/verde = bancos) | `#2bd497`   | —                 | `#0a8a5c`       |
-| Fonte             | Archivo            | Figtree (texto) + Unbounded (títulos) | | |
+| Fonte             | Archivo            | Roboto (títulos e texto) | | |
 | Raios             | 6–16px             | 12 / 18 / 28px   |                   |                 |
 
 **O que já combina:** os dois sites usam a mesma estrutura de tokens (fundo,
